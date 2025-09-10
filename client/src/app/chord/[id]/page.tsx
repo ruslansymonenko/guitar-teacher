@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "@/components/Button";
 
 type Chord = {
 	id: number;
@@ -84,8 +85,8 @@ export default async function ChordPage({ params }: { params: Promise<{ id: stri
 	const chord = await fetchChord(id);
 	return (
 		<div className="min-h-screen p-8 max-w-xl mx-auto">
-			<Link href="/" className="text-sm text-blue-600">← Back</Link>
-			<h1 className="text-3xl font-bold mt-2 mb-6">{chord.name}</h1>
+			<Button href="/" variant="primary" className="text-sm">← Back</Button>
+			<h1 className="text-secondary text-3xl font-bold mt-2 mb-6">{chord.name}</h1>
 			<div className="mb-4 text-gray-600 text-sm">Tuning: {chord.tuning}</div>
 			<ChordDiagram chord={chord} />
 		</div>
