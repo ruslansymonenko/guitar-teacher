@@ -9,11 +9,10 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
+  { label: "Metronome", href: "/metronome" },
 ];
 
-/**
- * Navbar renders the top navigation bar with app name and links.
- */
+
 export default function Navbar() {
   return (
     <header className="border-b bg-white/60 dark:bg-black/30 backdrop-blur">
