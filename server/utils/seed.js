@@ -1,4 +1,4 @@
-const { initSchema, upsertChord } = require('./db');
+const { initSchema, upsertChord } = require('../database/db');
 
 // Seed minimal set of chords
 function run() {
@@ -31,9 +31,7 @@ function run() {
     },
   ];
 
-  for (const chord of sampleChords) {
-    upsertChord(chord);
-  }
+  for (const chord of sampleChords) upsertChord(chord);
 
   console.log('Seeded chords:', sampleChords.map(c => c.name).join(', '));
 }

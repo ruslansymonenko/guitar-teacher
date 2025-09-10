@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const { initSchema, listChords, getChordById, getChordByName } = require('./db');
+const { initSchema } = require('./database/db');
+const chordsRouter = require('./routes/chords.routes');
 
 // Start the HTTP API server
 function createServer() {
@@ -14,41 +15,7 @@ function createServer() {
     res.json({ ok: true });
   });
 
-  // GET /chords -> list of {id, name}
-  app.get('/chords', (_req, res) => {
-    try {
-      const rows = listChords();
-      res.json(rows);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to list chords' });
-    }
-  });
-
-  // GET /chords/:idOrName -> full chord
-  app.get('/chords/:idOrName', (req, res) => {
-    try {
-      const { idOrName } = req.params;
-      const byId = Number(idOrName);
-      const row = Number.isFinite(byId) ? getChordById(byId) : getChordByName(idOrName);
-      if (!row) {
-        res.status(404).json({ error: 'Not found' });
-        return;
-      }
-      const result = {
-        id: row.id,
-        name: row.name,
-        tuning: row.tuning,
-        frets: JSON.parse(row.frets),
-        fingers: JSON.parse(row.fingers),
-        baseFret: row.baseFret,
-      };
-      res.json(result);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to fetch chord' });
-    }
-  });
+  app.use('/chords', chordsRouter);
 
   const port = process.env.PORT || 4000;
   app.listen(port, () => {
