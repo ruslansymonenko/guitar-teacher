@@ -31,7 +31,7 @@ function ChordDiagram({ chord }: { chord: Chord }) {
 	const xForString = (s: number) => padding + s * stringSpacing;
 	const yForFret = (f: number) => padding + f * fretSpacing;
 
-	const minFret = Math.max(1, chord.baseFret);
+	const minFret = Math.min(...chord.frets.filter(f => f > 0));
 
 	return (
 		<svg width={width} height={height} className="border rounded bg-white">
