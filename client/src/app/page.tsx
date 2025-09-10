@@ -10,8 +10,7 @@ export default async function Home() {
 	const chords = await fetchChords();
 	return (
 		<div className="min-h-screen p-8 max-w-xl mx-auto">
-			<h1 className="text-3xl font-bold mb-6 text-primary">Guitar Teacher</h1>
-			<p className="text-sm text-gray-500 mb-4">Saved chords</p>
+			<p className="text-sm text-gray-500 mb-4">Click on a chord to learn more about it</p>
 			<ul className="space-y-2">
 				{chords.map((chord) => (
 					<li key={chord.id}>
