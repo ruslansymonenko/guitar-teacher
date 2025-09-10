@@ -10,6 +10,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Metronome", href: "/metronome" },
+  { label: "Circle of Fifths", href: "/circle-of-fifths" },
 ];
 
 
